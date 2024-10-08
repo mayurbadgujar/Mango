@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CouponDto>
+
+<br>
+<br>
+<div class="container p-4 border">
+    <div class="row pb-2">
+        <div class="col">
+            <h1 class="text-info">Coupon List</h1>
+        </div>
+        <div class="col text-end pt-1">
+            <a asp-action="CouponCreate" class="btn btn-outline-primary"><i class="bi bi-plus"></i> Create New Coupon</a>
+        </div>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Coupon Code</th>
+                <th>Discount Amount</th>
+                <th>Minimum Amount</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var coupon in Model)
+            {
+                <tr>
+                    <td>@coupon.CouponCode</td>
+                    <td>@coupon.DiscountAmount</td>
+                    <td>$ @coupon.MinAmount.ToString("0.00")</td>
+                    <td>
+                        <a asp-action="CouponEdit" class="btn btn-success" asp-route-CouponId="@coupon.CouponId">
+                            <i class="bi bi-pen"></i>
+                        </a>
+                        <a asp-action="CouponDelete" class="btn btn-danger" asp-route-CouponId="@coupon.CouponId">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
